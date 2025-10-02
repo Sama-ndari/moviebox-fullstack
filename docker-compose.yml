@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  # MongoDB
+  mongodb:
+    image: mongo:7
+    container_name: moviebox-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: samandari
+      MONGO_INITDB_ROOT_PASSWORD: samandari1
+      MONGO_INITDB_DATABASE: moviebox
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - moviebox-network
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: moviebox-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - moviebox-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./moviebox-backend
+      dockerfile: Dockerfile
+    container_name: moviebox-backend
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      NODE_ENV: development
+      PORT: 8001
+      API_PREFIX: api/lite
+      MONGODB_URI: mongodb://samandari:samandari1@mongodb:27017/moviebox?authSource=admin
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: 1d
+      JWT_REFRESH_EXPIRES_IN: 7d
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./moviebox-backend:/app
+      - /app/node_modules
+      - ./moviebox-backend/uploads:/app/uploads
+    networks:
+      - moviebox-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./moviebox-frontend
+      dockerfile: Dockerfile
+    container_name: moviebox-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_BASE_URL: http://192.168.40.107:8001/api/lite
+    depends_on:
+      - backend
+    volumes:
+      - ./moviebox-frontend:/app
+      - /app/node_modules
+    networks:
+      - moviebox-network
+
+volumes:
+  mongodb_data:
+  redis_data:
+
+networks:
+  moviebox-network:
+    driver: bridge

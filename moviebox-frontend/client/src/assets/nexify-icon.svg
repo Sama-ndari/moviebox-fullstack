@@ -1,0 +1,14 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stylized "N" formed by converging lines in a more compact format -->
+  <path d="M20 15L20 65M20 15L50 65M50 15L50 45" stroke="#6F00FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Wave/stream element -->
+  <path d="M50 45C60 45 65 35 75 35" stroke="url(#gradient)" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="50" y1="40" x2="75" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6F00FF"/>
+      <stop offset="1" stop-color="#00F0FF"/>
+    </linearGradient>
+  </defs>
+</svg>

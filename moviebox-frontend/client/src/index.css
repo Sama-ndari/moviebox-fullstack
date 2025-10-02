@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .hero-overlay {
+    background: linear-gradient(
+      to right,
+      hsl(240, 27.3%, 14.1%, 0.95),
+      transparent 65%
+    ), linear-gradient(
+      to top,
+      hsl(240, 27.3%, 14.1%, 0.95),
+      transparent 50%
+    ), linear-gradient(
+      to right,
+      transparent,
+      hsla(268, 100%, 50%, 0.1) 90%
+    );
+  }
+
+  .nexify-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+
+  .nexify-section-title {
+    @apply font-bold text-xl md:text-2xl;
+  }
+
+  .nexify-card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/10;
+  }
+}
+
+@layer base {
+  :root {
+    /* Nexify Light Theme */
+    --background: 0 0% 96.1%; /* Soft White #F5F5F5 */
+    --foreground: 240 27.3% 14.1%; /* Dark Slate #1A1A2E */
+    --muted: 240 5% 90%;
+    --muted-foreground: 240 5% 30%;
+    --popover: 0 0% 96.1%;
+    --popover-foreground: 240 27.3% 14.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 27.3% 14.1%;
+    --border: 240 5% 84%;
+    --input: 240 5% 84%;
+    --primary: 268 100% 50%; /* Electric Indigo #6F00FF */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 190 100% 50%; /* Neon Cyan #00F0FF */
+    --secondary-foreground: 240 27.3% 14.1%;
+    --accent: 268 100% 97%;
+    --accent-foreground: 268 100% 40%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 268 100% 50%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 27.3% 14.1%;
+    --sidebar-primary: 268 100% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 190 100% 94%;
+    --sidebar-accent-foreground: 24 9.8% 10%;
+    --sidebar-border: 20 5.9% 90%;
+    --sidebar-ring: 20 14.3% 4.1%;
+    --chart-1: 0 90% 70%;
+    --chart-2: 210 90% 70%;
+    --chart-3: 120 90% 70%;
+    --chart-4: 250 90% 70%;
+    --chart-5: 40 90% 70%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Nexify Dark Theme */
+    --background: 240 27.3% 14.1%; /* Dark Slate #1A1A2E */
+    --foreground: 0 0% 96.1%; /* Soft White #F5F5F5 */
+    --muted: 240 16% 25%;
+    --muted-foreground: 240 5% 80%;
+    --popover: 240 27.3% 14.1%;
+    --popover-foreground: 0 0% 96.1%;
+    --card: 240 22% 16%;
+    --card-foreground: 0 0% 96.1%;
+    --border: 240 16% 22%;
+    --input: 240 16% 22%;
+    --primary: 268 100% 50%; /* Electric Indigo #6F00FF */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 190 100% 50%; /* Neon Cyan #00F0FF */
+    --secondary-foreground: 240 27.3% 14.1%;
+    --accent: 268 70% 25%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 268 100% 50%;
+    --sidebar-background: 240 30% 12%; 
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 268 100% 60%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 240 4.9% 83.9%;
+    --chart-1: 0 90% 70%;
+    --chart-2: 210 90% 70%;
+    --chart-3: 120 90% 70%;
+    --chart-4: 250 90% 70%;
+    --chart-5: 40 90% 70%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    /* @apply border-border; */
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom styles for MovieBox */
+.movie-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.content-row::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-overlay {
+  background: linear-gradient(to top, rgba(20, 20, 20, 1) 0%, rgba(20, 20, 20, 0) 100%);
+}
+
+.card-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}

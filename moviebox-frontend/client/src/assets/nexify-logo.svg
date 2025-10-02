@@ -1,0 +1,22 @@
+<svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stylized "N" formed by converging lines -->
+  <path d="M15 10L15 50M15 10L35 50M35 10L35 35" stroke="#6F00FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Wave/stream element -->
+  <path d="M35 35C45 35 50 25 60 25" stroke="url(#gradient)" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Nexify text -->
+  <path d="M80 20.5L80 40M80 20.5L90 40M90 20.5L90 40" stroke="#6F00FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M100 20.5H105C107.5 20.5 110 22 110 25C110 28 107.5 29.5 105 29.5H100V40" stroke="#6F00FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M120 20.5V40M115 20.5H125" stroke="#6F00FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M135 20.5V40M135 30H145V40" stroke="#6F00FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M155 20.5V40M155 20.5H165" stroke="#6F00FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M175 20.5V40M173 30L177 30L182 20.5" stroke="#6F00FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="35" y1="30" x2="60" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6F00FF"/>
+      <stop offset="1" stop-color="#00F0FF"/>
+    </linearGradient>
+  </defs>
+</svg>

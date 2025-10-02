@@ -1,0 +1,59 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'moviebox-backend/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'moviebox-backend/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: moviebox-backend/package-lock.json
+    
+    - name: Install dependencies
+      working-directory: ./moviebox-backend
+      run: npm ci
+    
+    - name: Lint
+      working-directory: ./moviebox-backend
+      run: npm run lint
+    
+    - name: Run tests
+      working-directory: ./moviebox-backend
+      run: npm test
+    
+    - name: Build
+      working-directory: ./moviebox-backend
+      run: npm run build
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy to production
+      run: |
+        echo "Deploy backend to production server"
+        # Add your deployment commands here
+        # Example: ssh, docker, kubernetes, etc.
