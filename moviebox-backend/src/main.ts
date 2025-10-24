@@ -33,18 +33,23 @@ async function bootstrap() {
   const ipAddress = configService.get<string>('app.ip') || '127.0.0.1';
   const apiPrefix = configService.get<string>('app.apiPrefix') || 'api/lite';
 
-
-
   const corsOptions: CorsOptions = {
-    origin: "*",
+    origin: [
+      'http://localhost:5173',
+      'http://192.168.30.82:5173',
+      // You can add your production frontend URL here as well
+    ],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true,
   };
 
-
   // Security middlewares
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: process.env.NODE_ENV === 'production' ? undefined : false,
+    }),
+  );
   // app.use(compression());
 
 
